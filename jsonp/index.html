@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<ul id="news">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<button id="more" class="btn">换一组</button>
+<script>
+    function $(id){
+        return document.querySelector(id);
+    }
+    $('#more').addEventListener('click', function(){
+        var script = document.createElement('script');
+        script.src = 'http://192.168.1.251:3000/get?callback=appendHtml';
+        document.head.appendChild(script);   //把script元素添加到页面上
+    });
+    function appendHtml(news){      // 声明包裹数据的函数
+        var html = '';
+        for( var i=0; i<news.length; i++){
+            html += '<li>' + news[i] + '</li>';
+        }
+        $('#news').innerHTML = html;
+    }
+
+</script>
+</body>
+
+</html>
